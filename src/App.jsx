@@ -1,11 +1,13 @@
 import './App.css'
 import Header from './components/Header'
+import Navber from './components/Navber'
 
 function App() {
 
   return (
     <>
-     <Header/>
+    <Header/>
+     <Navber/>
     </>
   )
 }
