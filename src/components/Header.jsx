@@ -1,8 +1,10 @@
 import React from 'react'
 import { CiDeliveryTruck, CiLocationOn, CiSettings } from "react-icons/ci";
+import Container from './Container';
 const Header = () => {
   return (
-    <div className='py-2  flex justify-between bg-[#F5F5F5]'>
+    <div className="bg-[#F5F5F5]">
+    <Container className='py-2 flex justify-between'>
       <div className="">
         <p className='text-[#dbdbdb]'>Welcome to Megamart</p>
       </div>
@@ -20,6 +22,7 @@ const Header = () => {
             <p className='text-[#dbdbdb]'>All Offers</p>
         </div>
       </div>
+    </Container>
     </div>
   )
 }
