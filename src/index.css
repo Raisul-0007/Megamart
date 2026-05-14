@@ -1,1 +1,25 @@
 @import "tailwindcss";
+.slick-dots .slick-active div{
+    border-right: 2px solid #262626 !important;
+    color: #262626 !important;
+}
+
+
+.slick-slide div {
+  outline: none;
+}
+
+.slick-slide img {
+  border: none;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
+
+.slick-prev,
+.slick-next {
+  outline: none;
+  border: none;
+}
