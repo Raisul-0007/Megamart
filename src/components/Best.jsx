@@ -30,9 +30,9 @@ const Best = () => {
     return <div className="">Loading</div>
   }
   return (
-    <div className='py-20'>
+    <div className='py-30'>
       <Container>
-        <div className="py-8">
+        <div className="pb-20">
             <h2 className='text-5xl font-semibold '>Best Selling Product</h2>
         </div>
       <div className="">

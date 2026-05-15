@@ -1,4 +1,5 @@
 import './App.css'
+import Ads from './components/Ads'
 import Banner from './components/Banner'
 import Best from './components/Best'
 import Header from './components/Header'
@@ -12,6 +13,7 @@ function App() {
      <Navber/>
      <Banner/>
      <Best/>
+     <Ads/>
     </>
   )
 }
