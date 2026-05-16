@@ -1,46 +1,58 @@
 import React, { useContext } from 'react'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {Data} from "./ApiData"
-import SliderModule from "react-slick";
+import { Data } from './ApiData'
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import SliderModule from 'react-slick';
 import Container from './Container';
 
 const Slider = SliderModule.default;
 
-const Best = () => {
+const NewArrivals = () => {
     let {info, loading} = useContext(Data)
 
+    function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className="absolute right-0 top-[15%] lg:top-[35%] z-100 p-4 rounded-full bg-[rgba(151,151,151,0.4)] cursor-pointer"
+      onClick={onClick}
+    ><MdOutlineKeyboardArrowRight /></div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className="absolute left-0 top-[15%] lg:top-[35%] z-100 p-4 rounded-full bg-[rgba(151,151,151,0.4)] cursor-pointer"
+      onClick={onClick}
+    ><MdOutlineKeyboardArrowLeft /></div>
+  );
+}
+
     const settings = {
-    infinite: true,
-    speed: 500,
-    infinite: true,
-    speed: 500,
-    autoplaySpeed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
+    infinite: true,
     autoplay: true,
     speed: 500,
-    cssEase: "linear",
+    autoplaySpeed: 4000,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
 
-  if(loading){
-    return <div className="">Loading</div>
-  }
   return (
-    <div className='py-20'>
+   <div className='py-20'>
       <Container>
-        <div className="pb-15">
-            <h2 className='text-5xl font-semibold '>Best Selling Product</h2>
+        <div className="pb-20">
+            <h2 className='text-5xl font-semibold '>New Arrivals Product</h2>
         </div>
       <div className="">
         <Slider {...settings}>
         {info?.map((item)=>(
-
-        <div key={item.id}  className=''>
+        <div key={item.id} className='w-1/5'>
           <div className="rounded-3xl  bg-white mx-3">
-            <div className="bg-[#F5F5F5] w-full rounded-t-3xl border-[#F5F5F5] relative">
+            <div className="bg-[#F5F5F5] w-full rounded-t-3xl border-[#F5F5F5] rounded-">
             <img className=' w-full h-50' src={item.thumbnail} alt={item.id} />
-            <div className="absolute right-0 top-0"><p className='px-3 py-2.5   bg-[#1798d0] rounded-tr-3xl rounded-bl-2xl rounded-br-none'>{Number(item.discountPercentage.toFixed(0)) > 0 && (<span>{item.discountPercentage.toFixed(0)}%</span>)}</p></div>
           </div>
           <div className="px-4 py-2">
             <div className="py-1">
@@ -71,4 +83,4 @@ const Best = () => {
   )
 }
 
-export default Best
+export default NewArrivals
