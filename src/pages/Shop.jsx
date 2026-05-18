@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Container from './Container'
-import { Data } from './ApiData'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
-
+import Container from './../components/Container';
+import { Data } from '../components/ApiData';
 const Shop = () => {
     let {info} = useContext(Data)
 

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { FaRegUser, FaSearch, FaShoppingCart } from 'react-icons/fa'
 import Container from './Container'
+import { Link } from 'react-router-dom'
 
 const Navber = () => {
   let [show, setShow] = useState(false)
@@ -23,8 +24,8 @@ const Navber = () => {
       {show && (
       <div className="absolute top-17 left-0 z-999 w-40 bg-[#1798d0]">
         <ul>
-          <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><a className='text-white ' href="#">Home</a></li>
-          <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><a className='text-white' href="#">Shop</a></li>
+          <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><Link className='text-white' href="#" to="/">Home</Link></li>
+          <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><Link className='text-white' href="#" to="/shop">Shop</Link></li>
           <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><a className='text-white' href="#">About</a></li>
           <li className='py-1 hover:bg-[#036b979f] cursor-pointer ease-in-out duration-200'><a className='text-white'  href="#">Contact</a></li>
         </ul>
