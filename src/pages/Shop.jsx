@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 import Container from './../components/Container';
 import { Data } from '../components/ApiData';
+import Products from '../components/Products';
+import Pagination from '../components/Pagination';
 const Shop = () => {
     let {info} = useContext(Data)
 
@@ -19,12 +21,9 @@ const Shop = () => {
         setBrand([...new Set(info.map((item)=>item.brand))])
     },[info])
 
-    let [Price, setPrice] = useState([])
-    useEffect(()=>{
-        setPrice([...new Set(info.map((item)=>item.price))])
-    },[])
 
-    let [filterCategory, setFilterCategory] = useState([])
+
+    let [filterCategory, setFilterCategory] = useState(info)
 
     let handleCategory = (citem)=>{
         let filterItem = info.filter((item)=> item.category === citem)
@@ -40,20 +39,22 @@ const Shop = () => {
     let handlePrice = (value)=>{
         setLow(value.low)
         setHigh(value.high)
-        let priceFilter = info.filter((item)=> item.price > value.low && item.price < value.high)
+        let priceFilter = info.filter((item)=> item.price >= value.low && item.price <= value.high)
         setFilterCategory(priceFilter)
     }
     let handleAll = ()=>{
-        setFilterCategory("")
+        setFilterCategory(info)
     }
 
-    console.log(filterCategory);
+   useEffect(()=>{
+    setFilterCategory(info)
+}, [info])
     
   return (
     <div>
       <Container>
-        <div className="">
-            <h2>Shop</h2>
+        <div className=" pt-5 pb-20">
+            <h2 className='text-5xl font-semibold'>Shop</h2>
         </div>
         <div className="flex">
         <div className="w-1/4">
@@ -86,21 +87,26 @@ const Shop = () => {
         </div>
         <div className=" ">
             <div onClick={(()=>setPriceShow(!priceShow))} className="py-3 px-2 border-b border-[#7676762d] flex items-center justify-between">
-              <h3 className='text-3xl'>Shop By Brand</h3>
+              <h3 className='text-3xl'>Shop By Price</h3>
             <h6 className='text-2xl'>{priceShow ? <MdArrowDropUp/> : <MdArrowDropDown/>}</h6>  
             </div>
-            <div className={`overflow-hidden transition-all duration-500 ${brandShow ? "" : "max-h-0"} `}>
+            <div className={`overflow-hidden transition-all duration-500 ${priceShow ? "" : "max-h-0"}`}>
                 <ul>
+        
                     <li onClick={handleAll} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>All price</p></li>
-                    <li onClick={()=>handlePrice({low:0, high:10})} className='py-2 px-2 border-b border-[#7676762d] '><p>$0-$10</p></li>
-                    <li onClick={()=>handlePrice({low:11, high:30})} className='py-2 px-2 border-b border-[#7676762d] '><p>$11-$30</p></li>
-                    <li onClick={()=>handlePrice({low:31, high:50})} className='py-2 px-2 border-b border-[#7676762d] '><p>$31-$50</p></li>
+                    <li onClick={()=> handlePrice({low:0, high:10})} className='py-2 px-2 border-b border-[#7676762d] '><p>$0-$10</p></li>
+                    <li onClick={()=> handlePrice({low:11, high:30})} className='py-2 px-2 border-b border-[#7676762d] '><p>$11-$30</p></li>
+                    <li onClick={()=> handlePrice({low:31, high:50})} className='py-2 px-2 border-b border-[#7676762d] '><p>$31-$50</p></li>
                 </ul>
             </div>
         </div>
         </div>
         </div>
-        <div className=""></div> 
+        <div className="w-3/4 px-10">
+            <div className="">
+                <Products filterCategory={filterCategory}/>
+            </div>
+        </div> 
         </div>
       </Container>
     </div>
