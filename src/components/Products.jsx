@@ -26,37 +26,34 @@ const Products = ({filterCategory}) => {
     }
     let prev = ()=>{
         if(currentPage > 1){
-            setCurrentPage(currentPage - 1)
+            setCurrentPage((index)=> index - 1)
         }
     }
     let paginate = (index)=>{
-        setCurrentPage(index)
+        setCurrentPage(index + 1)
     }
     let next = ()=>{
         if(currentPage < pageNumber.length){
-            setCurrentPage(currentPage + 1)
+            setCurrentPage((index)=> index + 1)
         }
     }
 
-
-    let [all, setAll] = useState([])
-    let [show, setShow] = useState([])
-
     useEffect(()=>{
-       let filterCate = filterCategory.slice(0,9)
-        setAll(filterCate)
+  setCurrentPage(1)
+}, [perPage, filterCategory])
 
-    }, [filterCategory])
 
-    let handleShow = ()=>{
-        setAll(filterCategory)
-        setShow(false)
-    }
-    let handleLess = ()=>{
-        let filterCate = filterCategory.slice(0,9)
-        setAll(filterCate)
-        setShow(true)
-    }
+    // let [show, setShow] = useState([])
+
+    // let handleShow = ()=>{
+    //     allPage(filterCategory)
+    //     setShow(false)
+    // }
+    // let handleLess = ()=>{
+    //     let filterCate = filterCategory.slice(0,9)
+    //     allPage(filterCate)
+    //     setShow(true)
+    // }
 
   return (
     <div>
@@ -79,10 +76,10 @@ const Products = ({filterCategory}) => {
         </select>
         </div>
         </div>
-        {all.length > 0 ?(
+        {allPage.length > 0 ? (
         <div className="flex flex-wrap ">
-            {all.map((item)=>(
-                <div key={item.id}  className='w-1/3'>
+            {allPage.map((item)=>(
+                <div key={item.id}  className='w-1/3 py-5'>
           <div className="rounded-3xl  bg-white mx-3">
             <div className="bg-[#F5F5F5] w-full rounded-t-3xl border-[#F5F5F5] relative">
             <img className=' w-full h-50' src={item.thumbnail} alt={item.id} />
@@ -90,7 +87,7 @@ const Products = ({filterCategory}) => {
           </div>
           <div className="px-4 py-2">
             <div className="py-1">
-                <h4>{item.title.slice(0,15)}</h4>
+                <h4>{item.title?.slice(0,15)}</h4>
             <div className="py-1">
                 <p>${item.price}</p>
             </div>
@@ -112,7 +109,7 @@ const Products = ({filterCategory}) => {
             ))}
         </div>
         ) : (
-            <div className=""></div>
+            <div className="">NO</div>
         )}
         <div className="">
             <div className="">
