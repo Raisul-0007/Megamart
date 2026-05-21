@@ -3,11 +3,10 @@ import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 import Container from './../components/Container';
 import { Data } from '../components/ApiData';
 import Products from '../components/Products';
-import Pagination from '../components/Pagination';
 const Shop = () => {
     let {info} = useContext(Data)
 
-    let [cateShow, SetCateShow] = useState(true)
+    let [cateShow, SetCateShow] = useState(false)
     let [brandShow, setBrandShow] = useState(false)
     let [priceShow, setPriceShow] = useState(false)
 
@@ -67,7 +66,7 @@ const Shop = () => {
             <ul>
                 <li onClick={handleAll} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>All Products </p></li>
                 {Category.map((item)=>(
-                <li onClick={()=>{handleCategory(item)}} key={item} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>{item}</p></li>
+                <li key={item} onClick={()=>{handleCategory(item)}} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>{item}</p></li>
                 ))}
             </ul>
         </div>
@@ -79,8 +78,8 @@ const Shop = () => {
         <div className={`overflow-hidden transition-all duration-500 ${brandShow ? "" : "max-h-0"}`}>
             <ul>
                 <li onClick={handleAll} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>All Brands </p></li>
-                {Brand.map((item)=>(
-                <li onClick={()=>{handleBrand(item)}} key={item} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>{item}</p></li>
+                {Brand.map((item, index)=>(
+                <li key={index} onClick={()=>{handleBrand(item)}} className='py-2 px-2 border-b border-[#7676762d] uppercase'><p>{item}</p></li>
                 ))}
             </ul>
         </div>

@@ -2,6 +2,7 @@ import React, {  useContext, useEffect, useState } from 'react'
 import { FaListUl, FaTableCellsLarge } from 'react-icons/fa6'
 import Pagination from './Pagination'
 import { Data } from './ApiData'
+import { Link } from 'react-router-dom'
 
 const Products = ({filterCategory}) => {
 
@@ -80,7 +81,7 @@ const Products = ({filterCategory}) => {
         <div className="flex flex-wrap ">
             {allPage.map((item)=>(
                 <div key={item.id}  className='w-1/3 py-5'>
-          <div className="rounded-3xl  bg-white mx-3">
+          <Link to={`/shop/${item.id}`} className="rounded-3xl  bg-white mx-3">
             <div className="bg-[#F5F5F5] w-full rounded-t-3xl border-[#F5F5F5] relative">
             <img className=' w-full h-50' src={item.thumbnail} alt={item.id} />
             <div className="absolute right-0 top-0"><p className='px-3 py-2.5   bg-[#1798d0] rounded-tr-3xl rounded-bl-2xl rounded-br-none'>{Number(item.discountPercentage.toFixed(0)) > 0 && (<span>{item.discountPercentage.toFixed(0)}%</span>)}</p></div>
@@ -88,8 +89,15 @@ const Products = ({filterCategory}) => {
           <div className="px-4 py-2">
             <div className="py-1">
                 <h4>{item.title?.slice(0,15)}</h4>
-            <div className="py-1">
-                <p>${item.price}</p>
+            <div className="py-1 flex gap-2">
+                
+                <p className=''>{item.discountPercentage
+    ? `$${(
+        item.price -
+        (item.price * item.discountPercentage) / 100
+      ).toFixed(2)}`
+    : ''}</p>
+    <p className='line-through text-[#6C6C6C]'>${item.price}</p>
             </div>
             </div>
             <div className="  border-t border-[#76767627]">
@@ -104,7 +112,7 @@ const Products = ({filterCategory}) => {
             }
             </div>
           </div>
-          </div>
+          </Link>
         </div>
             ))}
         </div>

@@ -57,8 +57,15 @@ function SamplePrevArrow(props) {
           <div className="px-4 py-2">
             <div className="py-1">
                 <h4>{item.title.slice(0,15)}</h4>
-            <div className="py-1">
-                <p>${item.price}</p>
+            <div className="py-1 flex gap-2">
+                
+                <p className=''>{item.discountPercentage
+    ? `$${(
+        item.price -
+        (item.price * item.discountPercentage) / 100
+      ).toFixed(2)}`
+    : ''}</p>
+    <p className='line-through text-[#6C6C6C]'>${item.price}</p>
             </div>
             </div>
             <div className="  border-t border-[#76767627]">

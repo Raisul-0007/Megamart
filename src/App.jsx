@@ -4,6 +4,7 @@ import './App.css'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Layout from './components/Layout'
+import ProductDetails from './pages/ProductDetails'
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
         {
           path: "/shop",
           element: <Shop />
+        },
+        {
+          path: "/shop/:id",
+          element: <ProductDetails />
         }
       ]
     }

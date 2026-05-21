@@ -19,13 +19,13 @@ const Navber = () => {
     <Container className='py-5 flex justify-between'>
       <div className="relative w-1/4">
         <div ref={navRef} className="">
-        <h3 className='text-3xl font-bold text-[#1798d0]'>MegaMart</h3>
+        <h3 className='cursor-pointer text-3xl font-bold text-[#1798d0]'>MegaMart</h3>
       </div>
       {show && (
       <div className="absolute top-17 left-0 z-999 w-40 bg-[#1798d0]">
         <ul>
-          <li className=''><Link className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200 text-white' to="/">Home</Link></li>
-          <li className=''><Link className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200 text-white' to="/shop">Shop</Link></li>
+          <li className=' border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><Link className='block w-full py-1 text-white' to="/">Home</Link></li>
+          <li className=' border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><Link className='block w-full py-1 text-white' to="/shop">Shop</Link></li>
           <li className='py-1 border-b border-[#ffffff33] hover:bg-[#036b979f] cursor-pointer duration-200'><a className='text-white' href="#">About</a></li>
           <li className='py-1 hover:bg-[#036b979f] cursor-pointer ease-in-out duration-200'><a className='text-white'  href="#">Contact</a></li>
         </ul>
