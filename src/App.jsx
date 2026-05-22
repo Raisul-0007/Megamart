@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Layout from './components/Layout'
 import ProductDetails from './pages/ProductDetails'
+import Cart from './pages/Cart'
+
 
 function App() {
 
@@ -24,6 +26,9 @@ function App() {
         {
           path: "/shop/:id",
           element: <ProductDetails />
+        },{
+          path: "/cart",
+          element: <Cart />
         }
       ]
     }

@@ -2,7 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Container from '../components/Container'
-
+import { useDispatch } from 'react-redux'
+import { addToCart} from '../components/slice/cartSlice'
 const ProductDetails = () => {
     let {id} = useParams()
     let [product, setProduct] = useState([])
@@ -16,6 +17,11 @@ const ProductDetails = () => {
         singleProducts()
     },[])
 
+    let dispatch = useDispatch()
+
+    let handleCart = (item)=>{
+        dispatch(addToCart({...item, qun:1}))
+    }
   return (
     <div>
     <Container className="flex">
@@ -48,7 +54,7 @@ const ProductDetails = () => {
             <p>{product.description}</p>
 
             <div className="py-10">
-                <button className="bg-[#1798d0] text-white py-3 cursor-pointer w-full rounded-lg hover:bg-[#036b97]">Add to Cart</button>
+                <button onClick={()=> handleCart(product)} className="bg-[#1798d0] text-white py-3 cursor-pointer w-full rounded-lg hover:bg-[#036b97]">Add to Cart</button>
             </div>
         </div>
     </Container>   

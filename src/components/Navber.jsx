@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { FaRegUser, FaSearch, FaShoppingCart } from 'react-icons/fa'
 import Container from './Container'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 const Navber = () => {
   let [show, setShow] = useState(false)
@@ -14,6 +15,8 @@ const Navber = () => {
       setShow(false)
     }
   })
+
+  let addToCart = useSelector((state) => state.cart.cartItems)
   return (
     <div className="border-b border-[#F5F5F5]">
     <Container className='py-5 flex justify-between'>
@@ -46,12 +49,17 @@ const Navber = () => {
               </div>
               Sign In/ Sign Up
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-[#1798d0]">
+            <Link to="/cart" className="flex items-center gap-3 relative">
+              <div className="text-[#1798d0] ">
                 <FaShoppingCart />
               </div>
                Cart
-            </div>
+               {addToCart.length > 0 && (
+                <div className="absolute top-1 -right-5 text-[12px] bg-[#1798d0] h-5 w-5 flex items-center justify-center rounded-full">
+                  {addToCart.length}
+                </div>
+               )}
+            </Link>
           </div>
       </Container>
     </div>
