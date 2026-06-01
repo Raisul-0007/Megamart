@@ -60,10 +60,10 @@ const Products = ({filterCategory}) => {
     <div>
         <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
-                <div onClick={()=>setActive("")}  className={`${active == "active" ?"p-1 hover:bg-[#505050] hover:text-[#FFFFFF] border border-[#262626] cursor-pointer" : "p-1 bg-[#262626] text-[#FFFFFF] cursor-pointer" }`}>
+                <div onClick={()=>setActive("")} className={`${active == "active" ? "p-1 bg-[#262626] text-[#FFFFFF] cursor-pointer" : "p-1 hover:bg-[#505050] hover:text-[#FFFFFF] border border-[#262626] cursor-pointer" }`}>
                 <FaTableCellsLarge/>
             </div>
-           <div onClick={handleActive} className={`${active == "active" ? "p-1 bg-[#262626] text-[#FFFFFF] cursor-pointer" : "p-1 hover:bg-[#505050] hover:text-[#FFFFFF] border border-[#262626] cursor-pointer" }`}>
+           <div onClick={handleActive} className={`${active == "active" ?"p-1 hover:bg-[#505050] hover:text-[#FFFFFF] border border-[#262626] cursor-pointer" : "p-1 bg-[#262626] text-[#FFFFFF] cursor-pointer" }`}>
              <FaListUl/>
            </div>
               </div>
@@ -78,6 +78,8 @@ const Products = ({filterCategory}) => {
         </div>
         </div>
         {allPage.length > 0 ? (
+            <div className="">
+        {active == "" ? (
         <div className="flex flex-wrap ">
             {allPage.map((item)=>(
                 <div key={item.id}  className='w-1/3 py-5'>
@@ -115,6 +117,27 @@ const Products = ({filterCategory}) => {
           </Link>
         </div>
             ))}
+        </div>
+        ):(
+            <div className="">
+                {allPage.map((item)=>(
+          <Link to={`/shop/${item.id}`}>
+                    <div className="flex gap-5 px-2 py-4 border-b border-[#76767621]">
+                        <div className="w-1/4 bg-white border border-[#F5F5F5]">
+                        <img className='w-full h-full' src={item.thumbnail} alt={item.id} />
+                        </div>
+                        <div className="w-2/4  space-y-5">
+                            <h4 className="text-3xl">{item.title}</h4>
+                            <h5 className="text-[#767676] text-sm">{item.description}</h5>
+                        </div>
+                        <div className="w-1/4 flex justify-end">
+                        <h2 className="text-2xl">${item.price.toFixed(2)}</h2>
+                        </div>
+                    </div>
+                    </Link>
+                ))}
+            </div>
+        )}
         </div>
         ) : (
             <div className="">NO</div>

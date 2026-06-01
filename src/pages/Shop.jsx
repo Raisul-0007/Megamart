@@ -4,6 +4,11 @@ import Container from './../components/Container';
 import { Data } from '../components/ApiData';
 import Products from '../components/Products';
 const Shop = () => {
+    useEffect(() => {
+    window.scrollTo(0, 0)
+   },[])
+
+   
     let {info} = useContext(Data)
 
     let [cateShow, SetCateShow] = useState(false)
